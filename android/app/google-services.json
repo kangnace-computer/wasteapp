@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1020037706418",
+    "project_id": "fir-zerowaste-d10d3",
+    "storage_bucket": "fir-zerowaste-d10d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020037706418:android:9b8a12452cd62688c6cfab",
+        "android_client_info": {
+          "package_name": "com.flutterthailand.wasteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020037706418-s3a2vkukh9o53565mmeavqj3sub50hge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEljFgK5PY-o8QW1a24eRSniHwbC1qARs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020037706418-s3a2vkukh9o53565mmeavqj3sub50hge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
