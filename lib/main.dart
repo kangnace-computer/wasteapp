@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Wast App',
+      title: 'This Wast App',
       theme: theme(),
       routes: routers,
       initialRoute: initialRoute,
