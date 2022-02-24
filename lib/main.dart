@@ -12,7 +12,6 @@ Future<Null> main() async {
   await Firebase.initializeApp().then((value) async {
     FirebaseAuth.instance.authStateChanges().listen((event) {
       if (event != null) {
-        // initialRoute = '/bottom_login';
         initialRoute = '/bottom_login';
       }
       runApp(const MyApp());

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:wasteapp/login/charts.dart';
 import 'package:wasteapp/login/person_page_l.dart';
 import 'package:wasteapp/screens/feed_page.dart';
 import 'package:wasteapp/screens/home_page.dart';
@@ -18,6 +19,8 @@ class _bottomloginState extends State<bottomlogin> {
     MapPage(),
     FeedPage(),
     PersonPageL(),
+    // Charts(),
+  
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,19 +38,19 @@ class _bottomloginState extends State<bottomlogin> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'HomeL',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            label: 'MapL',
+            label: 'Map',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.feed),
-            label: 'feedL',
+            label: 'feed',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.face),
-            label: 'PersonL',
+            label: 'Persons',
           ),
         ],
       ),

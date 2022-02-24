@@ -51,6 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             Container(
+              key: formKey,
               width: w,
               margin: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
@@ -130,10 +131,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         onPressed: () {
           print('name = $name, email = $email, password = $password');
           if ((name.isEmpty) || (email.isEmpty) || (password.isEmpty)) {
-            print('Have Space');
+            // print('Have Space');
             normalDialog(context, 'มีช่องว่าง ? กรุณากรอกข้อมูล');
           } else {
-            print('No Space');
+            // print('No Space');
             registerFirebase();
           }
         },
@@ -274,6 +275,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) async {
+          normalDialog(context, 'Register Success');
           print("Register Success");
           await value.user!.updateProfile(displayName: name).then((value) =>
               Navigator.restorablePushNamedAndRemoveUntil(

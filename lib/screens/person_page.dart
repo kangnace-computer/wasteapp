@@ -32,7 +32,7 @@ class _PersonPageState extends State<PersonPage> {
               height: h * 0.3,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/wallpaper.jpg'),
+                  image: AssetImage('assets/images/splash.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -44,7 +44,7 @@ class _PersonPageState extends State<PersonPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello',
+                    'Welcome',
                     style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
                   ),
                   Text(

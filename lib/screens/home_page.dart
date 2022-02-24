@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, avoid_print, avoid_unnecessary_containers, unused_local_variable, prefer_final_fields, unused_field, unused_import, use_key_in_widget_constructors
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,17 +10,19 @@ import 'package:wasteapp/screens/forgot_password/body.dart';
 import 'package:wasteapp/widgets/carousel_page.dart';
 import 'package:wasteapp/widgets/model/feed_model.dart';
 import 'package:wasteapp/widgets/size_config.dart';
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late PageController pageViewController;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   int _currnt = 0;
   @override
   Widget build(BuildContext context) {
-    // double w = MediaQuery.of(context).size.width;
+    double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
       //           ),
@@ -36,57 +39,109 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           CarouselPage(),
           SizedBox(height: 20),
-          bulidListView()
+          buildCard(context),
+          SizedBox(height: 5),
+          buildCard(context)
+          // bulidListView()
         ],
       ),
     );
   }
 
-  ListView bulidListView() {
-    return ListView(
-          padding: EdgeInsets.zero,
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
+  Container buildCard(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(right: 10.0, left: 10.0),
+      // padding: EdgeInsets.all(5),
+      width: MediaQuery.of(context).size.width,
+      height: 120,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        // ignore: prefer_const_literals_to_create_immutables
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 3,
+            color: Color(0x411D2429),
+            offset: Offset(0, 1),
+          )
+        ],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            bulidCard(),
-            bulidCard(),
-            bulidCard(),
-            bulidCard(),
-            bulidCard(),
-            bulidCard(),
-            bulidCard(),
-            bulidCard(),
-          ],
-        );
-  }
-
-  Card bulidCard() {
-    return Card(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            color: Color(0xFFF5F5F5),
-            child: Row(
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 1, 1, 1),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  'https://picsum.photos/seed/549/600',
+                  width: 150,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8, 8, 4, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    Text(
+                      'วงษ์พาณิชย์รับซื้อของเก่า',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
+                        child: AutoSizeText(
+                          'ตำบล หลักหก อำเภอเมืองปทุมธานี ปทุมธานี 12000 \n0865566424',
+                          style: TextStyle(color: kTextColor, fontSize: 10),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Column(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFEEEEEE),
-                  ),
-                  child: Image.network(
-                    'https://picsum.photos/seed/876/600',
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                  child: Icon(
+                    Icons.chevron_right_rounded,
+                    color: Color(0xFF57636C),
+                    size: 24,
                   ),
                 ),
-                Text(
-                  'Hello World',
-                  // style: FlutterFlowTheme.of(context).bodyText1,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 8),
+                  child: Icon(
+                    Icons.assistant_direction,
+                    size: 30,
+                  ),
+                  // child: Text(
+                  //   '\$11.00',
+                  //   textAlign: TextAlign.end,
+                  // ),
                 ),
               ],
             ),
-          );
+          ],
+        ),
+      ),
+    );
   }
 
   Padding bulidAppbar() {
@@ -159,12 +214,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-
-  bulidlisview() {
-    Container(
-      color: Colors.red,
     );
   }
 }
