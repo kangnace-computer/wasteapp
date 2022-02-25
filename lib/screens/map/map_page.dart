@@ -1,45 +1,15 @@
-// // ignore_for_file: prefer_const_constructors
-// import 'package:flutter/material.dart';
-// import 'package:wasteapp/screens/map/map_utils.dart';
-
-// class MapPage extends StatefulWidget {
-//   const MapPage({Key? key}) : super(key: key);
-
-//   @override
-//   _MapPageState createState() => _MapPageState();
-// }
-
-// class _MapPageState extends State<MapPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         body: Center(
-//           child: TextButton(
-//               style: TextButton.styleFrom(backgroundColor: Colors.red),
-//               onPressed: () {
-//                 MapUtils.openMap(13.8178884, 100.5096905);
-//               },
-//               child: Text(
-//                 'Open google map',
-//                 style: TextStyle(color: Colors.white),
-//               )),
-//         ),
-//       ),
-//     );
-
-//   }
-// }
-
-// ignore_for_file: prefer_is_empty, sized_box_for_whitespace, avoid_print, await_only_futures, prefer_void_to_null, use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_is_empty, sized_box_for_whitespace, avoid_print, await_only_futures, prefer_void_to_null, use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_constructors, non_constant_identifier_names, prefer_const_literals_to_create_immutables
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:wasteapp/constants/constants.dart';
 import 'package:wasteapp/screens/map/detail_page.dart';
+import 'package:wasteapp/screens/map/map_utils.dart';
 import 'package:wasteapp/widgets/model/shop_model.dart';
 
 class MapPage extends StatefulWidget {
-  
   @override
   _MapPageState createState() => _MapPageState();
 }
@@ -47,7 +17,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   List<Widget> widgets = [];
   List<ShopModel> ShopModels = [];
-  
+  late double ratingBarValue;
 
   @override
   void initState() {
@@ -65,7 +35,7 @@ class _MapPageState extends State<MapPage> {
         for (var snapshots in event.docs) {
           Map<String, dynamic> map = snapshots.data();
           ShopModel model = ShopModel.fromMap(map);
-          print('************************************name = ${model.nameshop}');
+          print('name = ${model.nameshop}');
           ShopModels.add(model);
           setState(
             () {
@@ -78,55 +48,166 @@ class _MapPageState extends State<MapPage> {
       print('เชื่อต่อ ฐานข้อมูลสำหรับหน้า Shop สำเร็จ');
     });
   }
-  
 
   Widget createWidget(ShopModel model, int index) => GestureDetector(
-    
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailPage(
-                  shopModel: ShopModels[index],
-                ),
-              ));
-          
-        },
-        
-        child: Card(
-          child: Row(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 200,
-                height: 200,
-                child: Image.network(
-                  model.imgshop,
-                ),
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailPage(
+                shopModel: ShopModels[index],
               ),
-              SizedBox(height: 5),
-              Container(
-                child: Column(
-                  children: [
-                    Text(model.nameshop),
-                    Text(model.call),
-                  ],
-                ),
-              )
-              // Text(model.nameshop)
-            ],
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Container(
+            margin: EdgeInsets.only(right: 10.0, left: 10.0),
+            width: MediaQuery.of(context).size.width,
+            height: 120,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 3,
+                  color: Color(0x411D2429),
+                  offset: Offset(0, 1),
+                )
+              ],
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 1, 1, 1),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        model.imgshop,
+                        width: 150,
+                        height: 120,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 4, 0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            model.nameshop,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 12),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
+                              child: AutoSizeText(
+                                model.location,
+                                style:
+                                    TextStyle(color: kTextColor, fontSize: 10),
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        child: Text(model.type),
+                      ),
+                      Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 8),
+                          child: IconButton(
+                              onPressed: () async {
+                                final url = 'https://www.google.com/maps/search/?api=1&query=${model.shoplat},${model.shoplong}';
+                                if (await canLaunch(url)) {
+                                  await launch(
+                                    url,
+                                    forceWebView: true,
+                                    enableJavaScript: true
+                                  );
+                                }
+                              },
+                              icon: Icon(
+                                Icons.assistant_direction,
+                                size: 30,
+                                color: Colors.green,
+                              ))),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
+        // child: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Card(
+        //     clipBehavior: Clip.antiAliasWithSaveLayer,
+        //     shape:
+        //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        //     child: Column(
+        //       mainAxisSize: MainAxisSize.min,
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Stack(
+        //           alignment: Alignment.bottomLeft,
+        //           children: [
+        //             Image.network(model.imgshop, fit: BoxFit.fitWidth),
+        //             Text(
+        //               model.nameshop,
+        //               style: TextStyle(color: Colors.white, fontSize: 18.0),
+        //             )
+        //           ],
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
+        //           child: Column(
+        //             children: <Widget>[
+        //               Text(model.location),
+        //               Text(model.optime)
+        //             ],
+        //           ),
+        //         ),
+        //         ButtonBar(
+        //           children: [
+        //             TextButton(
+        //               onPressed: () {
+        //                 print(model.location);
+        //               },
+        //               child: Text('more'),
+        //             ),
+        //           ],
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
       );
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Scaffold(
-          body: widgets.length == 0
-              ? Center(child: CircularProgressIndicator())
-              : ListView(children: widgets)),
+    return Scaffold(
+      body: widgets.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : ListView(children: widgets),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:wasteapp/constants/constants.dart';
 import 'package:wasteapp/screens/forgot_password/body.dart';
+import 'package:wasteapp/screens/map/map_page.dart';
 import 'package:wasteapp/widgets/carousel_page.dart';
 import 'package:wasteapp/widgets/model/feed_model.dart';
 import 'package:wasteapp/widgets/size_config.dart';
@@ -39,10 +40,9 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           CarouselPage(),
           SizedBox(height: 20),
-          buildCard(context),
-          SizedBox(height: 5),
-          buildCard(context)
-          // bulidListView()
+          // buildCard(context),
+          // SizedBox(height: 5),
+          // buildCard(context)
         ],
       ),
     );

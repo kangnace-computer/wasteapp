@@ -37,18 +37,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: h * 0.15,
-                  ),
-                  CircleAvatar(
-                    radius: h / 14,
-                    backgroundImage:
-                        const AssetImage('assets/images/getstudentimage.jpg'),
-                  ),
-                ],
-              ),
+              // child: Column(
+              //   children: [
+              //     SizedBox(
+              //       height: h * 0.15,
+              //     ),
+              //     CircleAvatar(
+              //       radius: h / 14,
+              //       backgroundImage:
+              //           const AssetImage('assets/images/getstudentimage.jpg'),
+              //     ),
+              //   ],
+              // ),
             ),
             Container(
               key: formKey,

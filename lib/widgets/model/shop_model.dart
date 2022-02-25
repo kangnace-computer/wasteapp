@@ -9,6 +9,7 @@ class ShopModel {
   final String web;
   final String call;
   final String optime;
+  final String type;
   ShopModel({
     required this.imgshop,
     required this.nameshop,
@@ -18,6 +19,7 @@ class ShopModel {
     required this.web,
     required this.call,
     required this.optime,
+    required this.type,
   });
 
   ShopModel copyWith({
@@ -29,6 +31,7 @@ class ShopModel {
     String? web,
     String? call,
     String? optime,
+    String? type,
   }) {
     return ShopModel(
       imgshop: imgshop ?? this.imgshop,
@@ -39,6 +42,7 @@ class ShopModel {
       web: web ?? this.web,
       call: call ?? this.call,
       optime: optime ?? this.optime,
+      type: type ?? this.type,
     );
   }
 
@@ -52,6 +56,7 @@ class ShopModel {
       'web': web,
       'call': call,
       'optime': optime,
+      'type': type,
     };
   }
 
@@ -65,6 +70,7 @@ class ShopModel {
       web: map['web'] ?? '',
       call: map['call'] ?? '',
       optime: map['optime'] ?? '',
+      type: map['type'] ?? '',
     );
   }
 
@@ -74,7 +80,7 @@ class ShopModel {
 
   @override
   String toString() {
-    return 'ShopModel(imgshop: $imgshop, nameshop: $nameshop, location: $location, shoplat: $shoplat, shoplong: $shoplong, web: $web, call: $call, optime: $optime)';
+    return 'ShopModel(imgshop: $imgshop, nameshop: $nameshop, location: $location, shoplat: $shoplat, shoplong: $shoplong, web: $web, call: $call, optime: $optime, type: $type)';
   }
 
   @override
@@ -89,7 +95,8 @@ class ShopModel {
       other.shoplong == shoplong &&
       other.web == web &&
       other.call == call &&
-      other.optime == optime;
+      other.optime == optime &&
+      other.type == type;
   }
 
   @override
@@ -101,6 +108,7 @@ class ShopModel {
       shoplong.hashCode ^
       web.hashCode ^
       call.hashCode ^
-      optime.hashCode;
+      optime.hashCode ^
+      type.hashCode;
   }
 }
