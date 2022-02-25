@@ -32,16 +32,14 @@
 // }
 
 // ignore_for_file: prefer_is_empty, sized_box_for_whitespace, avoid_print, await_only_futures, prefer_void_to_null, use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_constructors, non_constant_identifier_names
-
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:wasteapp/screens/map/map_utils.dart';
+import 'package:wasteapp/screens/map/detail_page.dart';
 import 'package:wasteapp/widgets/model/shop_model.dart';
 
 class MapPage extends StatefulWidget {
+  
   @override
   _MapPageState createState() => _MapPageState();
 }
@@ -49,6 +47,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   List<Widget> widgets = [];
   List<ShopModel> ShopModels = [];
+  
 
   @override
   void initState() {
@@ -79,21 +78,42 @@ class _MapPageState extends State<MapPage> {
       print('เชื่อต่อ ฐานข้อมูลสำหรับหน้า Shop สำเร็จ');
     });
   }
+  
 
   Widget createWidget(ShopModel model, int index) => GestureDetector(
+    
         onTap: () {
-         print(model.shoplat);
-         MapUtils.openMap(13.8178884, 100.5096905);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailPage(
+                  shopModel: ShopModels[index],
+                ),
+              ));
+          
         },
+        
         child: Card(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: Image.network(model.imgshop),
+                width: 200,
+                height: 200,
+                child: Image.network(
+                  model.imgshop,
+                ),
               ),
               SizedBox(height: 5),
-              Text(model.nameshop)
+              Container(
+                child: Column(
+                  children: [
+                    Text(model.nameshop),
+                    Text(model.call),
+                  ],
+                ),
+              )
+              // Text(model.nameshop)
             ],
           ),
         ),
@@ -104,13 +124,9 @@ class _MapPageState extends State<MapPage> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Scaffold(
-        body: widgets.length == 0
-            ? Center(child: CircularProgressIndicator())
-            // : GridView.extent(maxCrossAxisExtent: 350, children: widgets),
-            :ListView(
-              children: widgets
-            )
-      ),
+          body: widgets.length == 0
+              ? Center(child: CircularProgressIndicator())
+              : ListView(children: widgets)),
     );
   }
 }
