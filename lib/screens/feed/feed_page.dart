@@ -3,8 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:wasteapp/screens/detail_page/detail_page.dart';
-import 'package:wasteapp/widgets/model/feed_model.dart';
+import 'package:wasteapp/screens/feed/detail_page.dart';
+import 'package:wasteapp/screens/feed/feed_model.dart';
+
 
 class FeedPage extends StatefulWidget {
   @override

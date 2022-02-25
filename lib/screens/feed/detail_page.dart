@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_if_null_operators, unnecessary_null_comparison, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_if_null_operators, unnecessary_null_comparison, avoid_unnecessary_containers, avoid_print
 import 'package:flutter/material.dart';
 import 'package:wasteapp/constants/constants.dart';
-import 'package:wasteapp/widgets/model/feed_model.dart';
+import 'package:wasteapp/screens/feed/feed_model.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailPage extends StatefulWidget {
   final FeedModel feedModel;
@@ -59,9 +60,7 @@ class _DetailPageState extends State<DetailPage> {
 
   Container buildDetail() {
     double w = MediaQuery.of(context).size.width;
-    // double h = MediaQuery.of(context).size.height;
     return Container(
-
       height: double.maxFinite,
       width: w,
       decoration: BoxDecoration(
@@ -93,20 +92,21 @@ class _DetailPageState extends State<DetailPage> {
               style: TextStyle(color: kTextColor, fontSize: 20),
             ),
           ),
-          Text(
-            'more...',
-            style: TextStyle(color: Colors.blueAccent, fontSize: 20),
-            
-          ),
-          
-          // Container(
-          //   child: ElevatedButton(
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //     child: Text('Open Link'),
-          //   ),
-          // ),
+          TextButton(
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WebView(
+                    javascriptMode: JavascriptMode.unrestricted,
+                    initialUrl: model.url,
+                  )),
+                );
+                // WebView(
+                //   initialUrl: model.url,
+                // );
+                // print(model.url);
+              },
+              child: Text('more'))
         ],
       ),
     );

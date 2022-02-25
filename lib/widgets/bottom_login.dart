@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wasteapp/login/charts.dart';
 import 'package:wasteapp/login/person_page_l.dart';
-import 'package:wasteapp/screens/feed_page.dart';
+import 'package:wasteapp/screens/feed/feed_page.dart';
 import 'package:wasteapp/screens/home_page.dart';
 import 'package:wasteapp/screens/map/map_page.dart';
 
@@ -41,8 +42,8 @@ class _bottomloginState extends State<bottomlogin> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
+            icon: FaIcon(FontAwesomeIcons.compass),
+            label: 'Shop',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.feed),

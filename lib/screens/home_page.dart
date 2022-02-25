@@ -9,7 +9,7 @@ import 'package:wasteapp/constants/constants.dart';
 import 'package:wasteapp/screens/forgot_password/body.dart';
 import 'package:wasteapp/screens/map/map_page.dart';
 import 'package:wasteapp/widgets/carousel_page.dart';
-import 'package:wasteapp/widgets/model/feed_model.dart';
+import 'package:wasteapp/screens/feed/feed_model.dart';
 import 'package:wasteapp/widgets/size_config.dart';
 class HomePage extends StatefulWidget {
   @override
@@ -35,11 +35,12 @@ class _HomePageState extends State<HomePage> {
       //                         context, '/bottom_navigation', (route) => false));
       body: ListView(
         children: [
-          SizedBox(height: 10),
-          bulidAppbar(),
+          // SizedBox(height: 10),
+          // bulidAppbar(),
           SizedBox(height: 20),
           CarouselPage(),
           SizedBox(height: 20),
+         
           // buildCard(context),
           // SizedBox(height: 5),
           // buildCard(context)

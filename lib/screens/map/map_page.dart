@@ -136,13 +136,12 @@ class _MapPageState extends State<MapPage> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 8),
                           child: IconButton(
                               onPressed: () async {
-                                final url = 'https://www.google.com/maps/search/?api=1&query=${model.shoplat},${model.shoplong}';
+                                final url =
+                                    'https://www.google.com/maps/search/?api=1&query=${model.shoplat},${model.shoplong}';
                                 if (await canLaunch(url)) {
-                                  await launch(
-                                    url,
-                                    forceWebView: true,
-                                    enableJavaScript: true
-                                  );
+                                  await launch(url,
+                                      forceWebView: true,
+                                      enableJavaScript: true);
                                 }
                               },
                               icon: Icon(
@@ -205,6 +204,42 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        // leading: t,
+        automaticallyImplyLeading: false,
+        title: TextFormField(
+          textInputAction: TextInputAction.search,
+          decoration: InputDecoration(
+            hintText: 'search',
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0x00000000),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0x00000000),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            filled: true,
+            suffixIcon: Icon(
+              Icons.search,
+              color: Colors.white,
+              size: 22,
+            ),
+          ),
+          
+        ),
+        // actions: [],
+        // centerTitle: true,
+        // elevation: 4,
+      ),
       body: widgets.length == 0
           ? Center(child: CircularProgressIndicator())
           : ListView(children: widgets),
