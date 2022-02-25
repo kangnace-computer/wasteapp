@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wasteapp/screens/feed_page.dart';
 import 'package:wasteapp/screens/forgot_password/body.dart';
 import 'package:wasteapp/screens/home_page.dart';
-import 'package:wasteapp/screens/map_page.dart';
+import 'package:wasteapp/screens/map/map_page.dart';
 import 'package:wasteapp/screens/person_page.dart';
 
 class BottomNavigation extends StatefulWidget {

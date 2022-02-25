@@ -92,7 +92,6 @@ class _PersonPageState extends State<PersonPage> {
                           context, 'Have Space ? Please Fill Evry Blank');
                     } else {
                       checkAuthen();
-                      print('You click Login bottom');
                     }
                   },
                   child: Text(

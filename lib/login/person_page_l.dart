@@ -39,6 +39,7 @@ class _PersonPageLState extends State<PersonPageL> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.greenAccent.shade700,
         title: Text(
           email,
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unused_import, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
@@ -35,20 +37,27 @@ class _ChartsState extends State<Charts> {
               yValueMapper: (GDPData data, _) => data.gdp,
               dataLabelSettings: DataLabelSettings(isVisible: true),
               enableTooltip: true,
-              maximumValue: 40000),
+              maximumValue: 1000),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        focusColor: Colors.red,
+        backgroundColor: Colors.red,
+        onPressed: () {
+          print('U cliek');
+        },
+        label: Text('Up date'),
+        icon: Icon(Icons.file_download),
       ),
     );
   }
 
   List<GDPData> getCharData() {
     final List<GDPData> chartData = [
-      GDPData('Oceania', 1600),
-      GDPData('Africa', 2490),
-      GDPData('S America', 2900),
-      GDPData('Europe', 23050),
-      GDPData('N America', 24880),
-      GDPData('Asia', 34390),
+      GDPData('กระดาษ', 160),
+      GDPData('ขวด', 240),
+      GDPData('เหล็ก', 290),
+      GDPData('ขวดพลาสติก', 230),
     ];
     return chartData;
   }
