@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wasteapp/screens/feed/feed_page.dart';
-import 'package:wasteapp/screens/home_page.dart';
+import 'package:wasteapp/screens/home/home_page.dart';
 import 'package:wasteapp/screens/person_page.dart';
 import 'package:wasteapp/screens/splash/onbording.dart';
 import 'package:wasteapp/login/person_page_l.dart';

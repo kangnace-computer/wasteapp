@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_if_null_operators, unnecessary_null_comparison, avoid_unnecessary_containers, unused_local_variable, unused_element
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wasteapp/constants/constants.dart';
-import 'package:wasteapp/screens/map/map_utils.dart';
 import 'package:wasteapp/widgets/model/shop_model.dart';
 
 class DetailPage extends StatefulWidget {
@@ -79,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
         ],
       ),
       padding: const EdgeInsets.all(10.0),
-      child: Column(
+      child: ListView(
         children: [
           Container(
             alignment: Alignment.centerLeft,
@@ -106,21 +104,6 @@ class _DetailPageState extends State<DetailPage> {
             child: Text(
               model.call,
               style: TextStyle(color: kTextColor, fontSize: 20),
-            ),
-          ),
-          Container(
-            child: Text(
-              model.web,
-              style: TextStyle(color: kTextColor, fontSize: 20),
-            ),
-          ),
-          Container(
-            child: ElevatedButton(
-              onPressed: () {
-                print(
-                    "https://www.google.com/maps/search/?api=1&query=${model.shoplat},${model.shoplong}");
-              },
-              child: Text('Open Link'),
             ),
           ),
         ],

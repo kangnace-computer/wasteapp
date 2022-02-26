@@ -77,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
         ],
       ),
       padding: const EdgeInsets.all(10.0),
-      child: Column(
+      child: ListView(
         children: [
           Container(
             child: Text(
@@ -93,20 +93,22 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           TextButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WebView(
+            onPressed: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WebView(
                     javascriptMode: JavascriptMode.unrestricted,
                     initialUrl: model.url,
-                  )),
-                );
-                // WebView(
-                //   initialUrl: model.url,
-                // );
-                // print(model.url);
-              },
-              child: Text('more'))
+                  ),
+                ),
+              );
+            },
+            child: Text(
+              'more...',
+              style: TextStyle(fontSize: 20),
+            ),
+          )
         ],
       ),
     );

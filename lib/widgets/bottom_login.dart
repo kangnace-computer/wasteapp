@@ -1,11 +1,12 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wasteapp/constants/constants.dart';
 import 'package:wasteapp/login/charts.dart';
 import 'package:wasteapp/login/person_page_l.dart';
 import 'package:wasteapp/screens/feed/feed_page.dart';
-import 'package:wasteapp/screens/home_page.dart';
+import 'package:wasteapp/screens/home/home_page.dart';
 import 'package:wasteapp/screens/map/map_page.dart';
 
 class bottomlogin extends StatefulWidget {
@@ -29,13 +30,12 @@ class _bottomloginState extends State<bottomlogin> {
       body: SafeArea(child: screens[currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.green.shade700,
-        unselectedItemColor: Colors.green.shade400,
+        backgroundColor: Color(0xFFC0eDD0),
+        selectedItemColor: kPrimaryColor,
+        unselectedItemColor: kPrimaryLightColor,
         iconSize: 30,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        // ignore: prefer_const_literals_to_create_immutables
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wasteapp/constants/constants.dart';
 import 'package:wasteapp/screens/map/detail_page.dart';
-import 'package:wasteapp/screens/map/map_utils.dart';
 import 'package:wasteapp/widgets/model/shop_model.dart';
 
 class MapPage extends StatefulWidget {
@@ -17,7 +16,6 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   List<Widget> widgets = [];
   List<ShopModel> ShopModels = [];
-  late double ratingBarValue;
 
   @override
   void initState() {
@@ -35,7 +33,6 @@ class _MapPageState extends State<MapPage> {
         for (var snapshots in event.docs) {
           Map<String, dynamic> map = snapshots.data();
           ShopModel model = ShopModel.fromMap(map);
-          print('name = ${model.nameshop}');
           ShopModels.add(model);
           setState(
             () {
@@ -207,38 +204,54 @@ class _MapPageState extends State<MapPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        // leading: t,
         automaticallyImplyLeading: false,
-        title: TextFormField(
-          textInputAction: TextInputAction.search,
-          decoration: InputDecoration(
-            hintText: 'search',
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0x00000000),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0x00000000),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            filled: true,
-            suffixIcon: Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 22,
-            ),
+        title: Container(
+          height: 38,
+          child: TextField(
+            textInputAction: TextInputAction.search,
+            // onChanged: (value) => onSearch(value),
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: EdgeInsets.all(0),
+                prefixIcon: Icon(Icons.search, color: kPrimaryColor),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide.none),
+                hintStyle: TextStyle(fontSize: 14, color: kPrimaryLightColor),
+                hintText: "Search..."),
           ),
-          
         ),
-        // actions: [],
-        // centerTitle: true,
-        // elevation: 4,
+        // elevation: 0,
+        // backgroundColor: Colors.transparent,
+        // // leading: t,
+        // automaticallyImplyLeading: false,
+        // title: TextFormField(
+        //   textInputAction: TextInputAction.search,
+        //   decoration: InputDecoration(
+        //     hintText: 'search',
+        //     enabledBorder: UnderlineInputBorder(
+        //       borderSide: BorderSide(
+        //         color: Color(0x00000000),
+        //         width: 1,
+        //       ),
+        //       borderRadius: BorderRadius.circular(30),
+        //     ),
+        //     focusedBorder: UnderlineInputBorder(
+        //       borderSide: BorderSide(
+        //         color: Color(0x00000000),
+        //         width: 1,
+        //       ),
+        //       borderRadius: BorderRadius.circular(30),
+        //     ),
+        //     filled: true,
+        //     suffixIcon: Icon(
+        //       Icons.search,
+        //       color: Colors.white,
+        //       size: 22,
+        //     ),
+        //   ),
+        // ),
       ),
       body: widgets.length == 0
           ? Center(child: CircularProgressIndicator())

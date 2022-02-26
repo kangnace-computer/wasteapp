@@ -1,8 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, duplicate_ignore, avoid_unnecessary_containers, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:wasteapp/constants/constants.dart';
 import 'components/content_model.dart';
-
 
 class Onbording extends StatefulWidget {
   @override
@@ -12,7 +12,6 @@ class Onbording extends StatefulWidget {
 class _OnbordingState extends State<Onbording> {
   int currentIndex = 0;
   late PageController _controller;
-  
 
   @override
   void initState() {
@@ -27,7 +26,6 @@ class _OnbordingState extends State<Onbording> {
   }
 
   @override
-  
   Widget build(BuildContext context) {
     final data = MediaQuery.of(context);
     return Scaffold(
@@ -46,9 +44,9 @@ class _OnbordingState extends State<Onbording> {
                 return Padding(
                   padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
                   child: Column(
-                    children: [ 
+                    children: [
                       SizedBox(height: 20),
-                      Text(  
+                      Text(
                         contents[i].title,
                         style: TextStyle(
                           fontSize: 35,
@@ -67,7 +65,7 @@ class _OnbordingState extends State<Onbording> {
                       SizedBox(height: 20),
                       Image.asset(
                         contents[i].image,
-                        height: data.size.height/2.5,
+                        height: data.size.height / 2.5,
                       ),
                     ],
                   ),
@@ -90,11 +88,15 @@ class _OnbordingState extends State<Onbording> {
             width: double.infinity,
             child: FlatButton(
               child: Text(
-                  currentIndex == contents.length - 1 ? "Continue" : "Next"),
+                currentIndex == contents.length - 1 ? "Continue" : "Next",
+                style: TextStyle(fontSize: 20),
+              ),
               onPressed: () {
                 if (currentIndex == contents.length - 1) {
                   Navigator.pushNamedAndRemoveUntil(
-                    context,'/bottom_navigation',(route) => true,
+                    context,
+                    '/bottom_navigation',
+                    (route) => true,
                   );
                 }
                 _controller.nextPage(
@@ -102,7 +104,7 @@ class _OnbordingState extends State<Onbording> {
                   curve: Curves.bounceIn,
                 );
               },
-              color: Theme.of(context).primaryColor,
+              color: kPrimaryColor,
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -121,7 +123,7 @@ class _OnbordingState extends State<Onbording> {
       margin: EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).primaryColor,
+        color: kPrimaryColor,
       ),
     );
   }

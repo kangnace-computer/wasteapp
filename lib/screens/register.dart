@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:wasteapp/constants/constants.dart';
-import 'package:wasteapp/screens/home_page.dart';
+import 'package:wasteapp/screens/home/home_page.dart';
 import 'package:wasteapp/screens/person_page.dart';
 import 'package:wasteapp/widgets/dialog.dart';
 

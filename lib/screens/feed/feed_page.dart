@@ -78,6 +78,7 @@ class _FeedPageState extends State<FeedPage> {
         body: widgets.length == 0
             ? Center(child: CircularProgressIndicator())
             : GridView.extent(maxCrossAxisExtent: 350, children: widgets),
+            // :ListView(children: widgets)
             
       ),
     );

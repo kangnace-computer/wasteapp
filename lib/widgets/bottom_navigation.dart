@@ -1,10 +1,11 @@
-// ignore_for_file: unused_import, use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: unused_import, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wasteapp/constants/constants.dart';
 import 'package:wasteapp/screens/feed/feed_page.dart';
 import 'package:wasteapp/screens/forgot_password/body.dart';
-import 'package:wasteapp/screens/home_page.dart';
+import '../screens/home/home_page.dart';
 import 'package:wasteapp/screens/map/map_page.dart';
 import 'package:wasteapp/screens/person_page.dart';
 
@@ -29,12 +30,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.green.shade900,
-        unselectedItemColor: Colors.green.shade400,
+        selectedItemColor: kPrimaryColor,
+        unselectedItemColor: kPrimaryLightColor,
         iconSize: 30,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        // ignore: prefer_const_literals_to_create_immutables
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
